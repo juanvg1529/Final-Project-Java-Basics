@@ -12,4 +12,8 @@ public class FullTimeProfessor extends Professors {
     public float getSalary() {
         return (float) (super.professorSalary+this.experienceYears*1.10);
     }
+
+    public int getExperienceYears() {
+        return experienceYears;
+    }
 }

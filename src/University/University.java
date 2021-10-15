@@ -12,9 +12,29 @@ public class University {
     List <Professors> professorsList;
     List <Courses> coursesList;
 
-    public University(List<Students> studentsList, List<Professors> professorsList, List<Courses> coursesList) {
-        this.studentsList = studentsList;
-        this.professorsList = professorsList;
-        this.coursesList = coursesList;
+    public University() {
+        this.studentsList =  new ArrayList<Students>();
+        this.professorsList = new ArrayList<Professors>();
+        this.coursesList = new ArrayList<Courses>();
+    }
+
+    //methods
+
+    //the enter parameter is an obj from the class Professor
+    public void addProfessor(Professors professors)
+    {
+        professorsList.add(professors);
+    }
+
+    public List<Students> getStudentsList() {
+        return studentsList;
+    }
+
+    public List<Professors> getProfessorsList() {
+        return professorsList;
+    }
+
+    public List<Courses> getCoursesList() {
+        return coursesList;
     }
 }
