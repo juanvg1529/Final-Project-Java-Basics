@@ -10,7 +10,20 @@ public class PartTimeProfessor extends Professors {
 
     @Override
     public float getSalary() {
-        return this.professorSalary*hoursPerWeek*0.0052f;
+        return super.professorSalary*hoursPerWeek*0.0052f;
         //0,0052 its the relation between 1 month vs 192 hours of work at month in colombia
+    }
+
+    @Override
+    public String getProfessorType() {
+        return "Part Time Professor";
+    }
+
+    public int getHoursPerWeek() {
+        return hoursPerWeek;
+    }
+
+    public void setHoursPerWeek(int hoursPerWeek) {
+        this.hoursPerWeek = hoursPerWeek;
     }
 }

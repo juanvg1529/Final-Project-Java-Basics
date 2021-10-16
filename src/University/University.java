@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class University {
-    List <Students> studentsList;
-    List <Professors> professorsList;
-    List <Courses> coursesList;
+   protected List <Students> studentsList;
+   protected List <Professors> professorsList;
+   protected List <Courses> coursesList;
 
     public University() {
         this.studentsList =  new ArrayList<Students>();
@@ -23,12 +23,27 @@ public class University {
     //the enter parameter is an obj from the class Professor
     public void addProfessor(Professors professors)
     {
-        professorsList.add(professors);
+       this.professorsList.add(professors);
     }
 
-    public List<Students> getStudentsList() {
+    public void addCourse(Courses courses)
+    {
+        this.coursesList.add(courses);
+    }
+
+    public  void addStudent(Students newStudent)
+    {
+        this.studentsList.add(newStudent);
+    }
+
+
+    //getters and Setters
+
+    public List<Students> getStudentsList()
+    {
         return studentsList;
     }
+
 
     public List<Professors> getProfessorsList() {
         return professorsList;
