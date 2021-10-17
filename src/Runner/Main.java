@@ -1,6 +1,7 @@
 package Runner;
 
 import Professor.FullTimeProfessor;
+import Professor.PartTimeProfessor;
 import Professor.Professors;
 import Students.Students;
 import University.University;
@@ -11,31 +12,21 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-        University globerUnivesity = new University();
-        globerUnivesity.addProfessor(new FullTimeProfessor("Francisco el matematico", 1000, 9));
-        globerUnivesity.addProfessor(new FullTimeProfessor("jejej jaja", 100632, 5));
-        globerUnivesity.addStudent(new Students(123, "juanito alimañana", 20));
-        globerUnivesity.addStudent(new Students(124, "Peppa pig", 17));
-        globerUnivesity.addStudent(new Students(125, "melo caramelo", 24));
-        globerUnivesity.addStudent(new Students(126, "rosa melano", 25));
-        globerUnivesity.addStudent(new Students(127, "armando casas", 29));
-
-//        System.out.println(globerUnivesity.getStudentsList().get(0).getStudentsName());
+        University globerUniversity = startUniversityInitialValues();
 
 
-        System.out.println("the professors name is: " + globerUnivesity.getProfessorsList().get(0).getProfessorsName() + " ,he is a " + globerUnivesity.getProfessorsList().get(0).getProfessorType());
-        Scanner scan = new Scanner(System.in);
-
+        Scanner scan= new Scanner(System.in);
         boolean isStillRunnin = true;
         while (isStillRunnin) {
+
             startMenu();
+
             byte menuOption = scan.nextByte();
 
 
             switch (menuOption) {
                 case 1:
-                    printProfessorsInfo(globerUnivesity.getProfessorsList());
+                    printProfessorsInfo(globerUniversity.getProfessorsList());
                     //Al profesor data
                     break;
                 case 2:
@@ -66,7 +57,13 @@ public class Main {
     public static void printProfessorsInfo(List<Professors> professorsList) {
         String infoToString="";
         for (Professors i : professorsList) {
-             System.out.println("the professors name is: " + i.getProfessorsName() + " ,he is a " + i.getProfessorType());
+             System.out.println("==============================================" +
+                     "\nthe professors name is: " + i.getProfessorsName()+"," +
+                     "\n is a: " + i.getProfessorType()+"," +
+                     "\n has a salary of :"+i.getProfessorSalary()+"and a total of: "+i.getSalary()+
+                     "\n ==============================================" +
+                     "\n");
+
         }
     }
     public static void startMenu()
@@ -78,6 +75,25 @@ public class Main {
                 "\n 4) Create a new course, add a new professor and new classmates"+
                 "\n 5) Get all courses info in which a random student is signed up " +
                 "\n 6) Exit");
+    }
+    public static University startUniversityInitialValues()
+    {
+        University newUniversity = new University();
+        newUniversity.addProfessor(new FullTimeProfessor("Francisco el matematico", 1000, 25));
+        newUniversity.addProfessor(new FullTimeProfessor("Ms Poppin", 100632, 15));
+        newUniversity.addProfessor(new FullTimeProfessor("Naruto uzumaki", 10056, 20));
+        newUniversity.addProfessor(new FullTimeProfessor("Perry the platy[us", 58064, 30));
+
+        newUniversity.addProfessor(new PartTimeProfessor("Carmen Sandiego",15222,29));
+        newUniversity.addProfessor(new PartTimeProfessor("Lady bug",12641,28));
+        newUniversity.addProfessor(new PartTimeProfessor("lil nas X",4984,15));
+
+        newUniversity.addStudent(new Students(123, "juanito alimañana", 20));
+        newUniversity.addStudent(new Students(124, "Peppa pig", 17));
+        newUniversity.addStudent(new Students(125, "melo caramelo", 24));
+        newUniversity.addStudent(new Students(126, "rosa melano", 25));
+        newUniversity.addStudent(new Students(127, "armando casas", 29));
+        return newUniversity;
     }
 }
 
