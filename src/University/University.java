@@ -52,4 +52,16 @@ public class University {
     public List<Courses> getCoursesList() {
         return coursesList;
     }
+
+    public void setStudentsList(List<Students> studentsList) {
+        this.studentsList = studentsList;
+    }
+
+    public void setProfessorsList(List<Professors> professorsList) {
+        this.professorsList = professorsList;
+    }
+
+    public void setCoursesList(List<Courses> coursesList) {
+        this.coursesList = coursesList;
+    }
 }
