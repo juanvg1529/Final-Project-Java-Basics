@@ -55,8 +55,6 @@ public class Main {
                                 if(subMenuOption==i-1) {
                                     getCourseInformation(globerUniversity,subMenuOption-1);
                                     System.out.println(subMenuOption);
-                                    //System.out.println("\n"+ "The professor asigned is: "+globerUniversity.getCoursesList().get(subMenuOption-1).getProfessorsCourse().getProfessorsName()+". \n");
-                                   //globerUniversity.getProfessorInformation(i-1);
                                     getProfessorsClass(globerUniversity,subMenuOption-1);
                                     searchClassMatesInfo(globerUniversity,subMenuOption-1);
                                     band2=false;
@@ -77,11 +75,14 @@ public class Main {
                     getStudentListInfo(globerUniversity);
                     System.out.println("Please type the Students information:" );
                     System.out.println("\n Student's name:");
-                    String newStudentsName=scan.nextLine();
+                    Scanner newName= new Scanner(System.in);
+                    String newStudentsName=newName.nextLine();
+                    Scanner newID= new Scanner(System.in);
                     System.out.println("Student's Id: ");
-                    int newStudentsID=scan.nextInt();
+                    int newStudentsID=newID.nextInt();
+                    Scanner newAge=new Scanner(System.in);
                     System.out.println("Students' Age:");
-                    int newStudentsAge=scan.nextInt();
+                    int newStudentsAge=newAge.nextInt();
                     globerUniversity.addStudent(new Students(newStudentsID,newStudentsName,newStudentsAge));
                     //create a new student an added to students list
                     break;
