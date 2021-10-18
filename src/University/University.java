@@ -35,10 +35,17 @@ public class University {
     {
         this.studentsList.add(newStudent);
     }
-
+    public void addStudentToCourse(int courseIndex,int studentId)
+    {
+        this.coursesList.get(courseIndex-1).addStudentsToCourse(this.studentsList.get(studentId-1));
+    }
 
     //getters and Setters
 
+    public void getProfessorInformation( int id)
+    {
+        System.out.println( this.coursesList.get(id).getProfessorsCourse().getProfessorsName());
+    }
     public List<Students> getStudentsList()
     {
         return studentsList;
