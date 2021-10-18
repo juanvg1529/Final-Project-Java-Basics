@@ -8,18 +8,21 @@ public abstract class Professors {
     protected float professorSalary;
     protected String professorType;
 
-    int idCounterProfessors=1;
+
 
     //constructor
-    public Professors(String professorsName, float professorSalary) {
+    public Professors(String professorsName, float professorSalary,int professorsID) {
         this.professorsName = professorsName;
         this.professorSalary = professorSalary;
-        this.professorsID=this.idCounterProfessors++;
+        this.professorsID=professorsID;
         this.professorType="";
         /*
         <p>Everytime a professor is created the counter will add</p>
         */
     }
+
+
+
     public abstract float getSalary();
     public abstract String getProfessorType();
 

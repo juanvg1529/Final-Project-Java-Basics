@@ -46,7 +46,7 @@ public class Main {
                 case 2:
                     boolean band2=true;
                     while (band2){
-                        System.out.println("Please chooese one of the next courses to get their info about " +
+                        System.out.println("Please choese one of the next courses to get their info about " +
                                 "\n the professor and the classmates:");
                         starSubMenuClasses(globerUniversity);
                         int subMenuOption=scan.nextInt();
@@ -100,6 +100,72 @@ public class Main {
                     //create a new student an added to students list
                     break;
                 case 4:
+                    boolean is4StillRunnin=true;
+                    while (is4StillRunnin)
+                    {
+                        Scanner supportInput= new Scanner(System.in);
+                        startSubMenuCase4();
+                        int subMenuOptionCase4=supportInput.nextInt();
+
+                        switch (subMenuOptionCase4)
+                        {
+                            case 1://create a new class and add a professor
+                                System.out.println("Type the name of the new Course: ");
+                                Scanner newClassName= new Scanner(System.in);
+                                String newClasstoAdd=newClassName.nextLine();
+                                System.out.println("Type the room to asign to the new Course: ");
+                                Scanner newRoom= new Scanner(System.in);
+                                int newRoomtoAdd=newClassName.nextInt();
+                                int subMenuCounter=0;
+
+                                System.out.println("these are our Professors: ");
+                                for(Professors i: globerUniversity.getProfessorsList() )
+                                {
+                                    subMenuCounter++;
+                                    System.out.println(subMenuCounter+"."+"Name: "+i.getProfessorsName()+".ID: "+i.getProfessorsID()+"."+i.getProfessorType());
+                                }
+                                System.out.println("type the number of professor to add to the new Course: ");
+                                Scanner newIDProfessor= new Scanner(System.in);
+                                int typeID=newIDProfessor.nextInt();
+                                globerUniversity.addCourse(new Courses(newClasstoAdd,newRoomtoAdd,globerUniversity.getProfessorsList().get(typeID-1)));
+                                int lastClass=globerUniversity.getCoursesList().size()-1;
+                                System.out.println("You have create the new course: "+globerUniversity.getCoursesList().get(lastClass).getCourseName()
+                                        +" and you have assignated the Professor: "+globerUniversity.getProfessorsList().get(typeID-1).getProfessorsName()+".");
+
+                                break;
+                            case 2:
+                                if(globerUniversity.getCoursesList().size()<=6){
+                                    System.out.println("please add a class first");
+                                } else{
+                                    System.out.println("here is our list of students");
+                                    getStudentListInfo(globerUniversity);
+                                    System.out.println("type the ID of the student you want to add to the new class");
+                                    Scanner askId= new Scanner(System.in);
+                                    int askIDStudent=askId.nextInt();
+                                    for(int i=0;i<globerUniversity.getStudentsList().size();i++){
+                                        int actualID=globerUniversity.getStudentsList().get(i).getStudentsID();
+                                        if(actualID==askIDStudent)
+                                        {
+                                            int lastCourseID=globerUniversity.getCoursesList().size();
+                                            globerUniversity.addStudentToCourse(lastCourseID,i);
+                                            int lastClassIndex=globerUniversity.getCoursesList().size()-1;
+                                            System.out.println("You have create the new course: "+globerUniversity.getCoursesList().get(lastClassIndex).getCourseName()
+                                                    +" and you have add the student: "+globerUniversity.getStudentsList().get(i).getStudentsName());
+                                            is4StillRunnin=false;
+                                        }
+                                    }
+
+
+                                }
+
+                                //add a new student to the class
+                                break;
+                            case 3:
+                                System.out.println("Gettin back to the main menu...");
+                                is4StillRunnin=false;
+                                break;
+                        }
+                    }
                     //create a new class and a techer and a relevant data
                     break;
                 case 5:
@@ -140,6 +206,13 @@ public class Main {
                 "\n 4) Create a new course, add a new professor and new classmates"+
                 "\n 5) Get all courses info in which a random student is signed up " +
                 "\n 6) Exit");
+    }
+
+    public static void startSubMenuCase4(){
+        System.out.println("Please type one of the following options if you wan to: " +
+                "\n1)Create a new Course and assing a professor" +
+                "\n2)Add a student to new Course" +
+                "\n3) Get back to the main menu");
     }
     public static int starSubMenuClasses(University university)
     {
@@ -198,15 +271,15 @@ public class Main {
     {
         University newUniversity = new University();
         //Full time professors
-        newUniversity.addProfessor(new FullTimeProfessor("Francisco el matematico", 1000, 25));
-        newUniversity.addProfessor(new FullTimeProfessor("Ms Poppin", 100632, 15));
-        newUniversity.addProfessor(new FullTimeProfessor("Naruto uzumaki", 10056, 20));
-        newUniversity.addProfessor(new FullTimeProfessor("Perry the platyus", 58064, 30));
+        newUniversity.addProfessor(new FullTimeProfessor("Francisco el matematico", 1000, 152,26));
+        newUniversity.addProfessor(new FullTimeProfessor("Ms Poppin", 100632,452, 15));
+        newUniversity.addProfessor(new FullTimeProfessor("Naruto uzumaki", 10056,865, 20));
+        newUniversity.addProfessor(new FullTimeProfessor("Perry the platyus", 58064,89, 30));
 
         //Part time professors
-        newUniversity.addProfessor(new PartTimeProfessor("Carmen Sandiego",15222,29));
-        newUniversity.addProfessor(new PartTimeProfessor("Lady bug",12641,28));
-        newUniversity.addProfessor(new PartTimeProfessor("lil nas X",4984,15));
+        newUniversity.addProfessor(new PartTimeProfessor("Carmen Sandiego",15222,29,36));
+        newUniversity.addProfessor(new PartTimeProfessor("Lady bug",12641,28,15));
+        newUniversity.addProfessor(new PartTimeProfessor("lil nas X",4984,15,40));
 
         //students
         newUniversity.addStudent(new Students(12, "juanito alimañana", 20));
@@ -224,7 +297,7 @@ public class Main {
         newUniversity.addCourse(new Courses("spying",15,newUniversity.getProfessorsList().get(3)));
         newUniversity.addCourse(new Courses("Etics",15,newUniversity.getProfessorsList().get(4)));
         newUniversity.addCourse(new Courses("Differential Equations",15,newUniversity.getProfessorsList().get(0)));
-        //newUniversity.addCourse(new Courses("Biomaterials",15,newUniversity.getProfessorsList().get(2)));
+        newUniversity.addCourse(new Courses("Biomaterials",15,newUniversity.getProfessorsList().get(2)));
         newUniversity.addCourse(new Courses("Piano 3",15,newUniversity.getProfessorsList().get(6)));
         newUniversity.addCourse(new Courses("Advance Salsa",15,newUniversity.getProfessorsList().get(1)));
 

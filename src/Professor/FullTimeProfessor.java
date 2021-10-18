@@ -1,10 +1,12 @@
 package Professor;
 
+import java.net.IDN;
+
 public class FullTimeProfessor extends Professors {
     private int experienceYears;
 
-    public FullTimeProfessor(String professorsName, float professorSalary, int experienceYears) {
-        super(professorsName, professorSalary);
+    public FullTimeProfessor(String professorsName, float professorSalary, int professorsID, int experienceYears) {
+        super(professorsName, professorSalary, professorsID);
         this.experienceYears = experienceYears;
     }
 
