@@ -20,11 +20,4 @@ public class FullTimeProfessor extends Professors {
         return "Full Time Professor ";
     }
 
-    public int getExperienceYears() {
-        return experienceYears;
-    }
-
-    public void setExperienceYears(int experienceYears) {
-        this.experienceYears = experienceYears;
-    }
 }

@@ -20,7 +20,6 @@ public class University {
 
     //methods
 
-    //the enter parameter is an obj from the class Professor
     public void addProfessor(Professors professors)
     {
        this.professorsList.add(professors);
@@ -40,12 +39,8 @@ public class University {
         this.coursesList.get(courseIndex-1).addStudentsToCourse(this.studentsList.get(studentId-1));
     }
 
-    //getters and Setters
+    //getters
 
-    public void getProfessorInformation( int id)
-    {
-        System.out.println( this.coursesList.get(id).getProfessorsCourse().getProfessorsName());
-    }
     public List<Students> getStudentsList()
     {
         return studentsList;
@@ -60,15 +55,5 @@ public class University {
         return coursesList;
     }
 
-    public void setStudentsList(List<Students> studentsList) {
-        this.studentsList = studentsList;
-    }
 
-    public void setProfessorsList(List<Professors> professorsList) {
-        this.professorsList = professorsList;
-    }
-
-    public void setCoursesList(List<Courses> coursesList) {
-        this.coursesList = coursesList;
-    }
 }

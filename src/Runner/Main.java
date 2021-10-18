@@ -14,20 +14,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         University globerUniversity = startUniversityInitialValues();
-        //System.out.println(globerUniversity.getCoursesList().get(3).getProfessorsCourse().getProfessorsName());
-
-        for( int i=0; i+1<=globerUniversity.getCoursesList().size();i++)
-        {
-
-            System.out.println(globerUniversity.getCoursesList().get(i).getProfessorsCourse().getProfessorsName()+ globerUniversity.getCoursesList().get(i).getCourseName());
-        }
-        //searchClassMatesInfo(globerUniversity,1);
-//
-//        for( Students i:globerUniversity.getCoursesList().get(1).getStudentsAtCourse()){
-//
-//            System.out.println(i.getStudentsName());
-//        }
-////
 
         Scanner scan= new Scanner(System.in);
         boolean isStillRunnin = true;
@@ -41,11 +27,10 @@ public class Main {
             switch (menuOption) {
                 case 1:
                     printProfessorsInfo(globerUniversity.getProfessorsList());
-                    //Al profesor data
                     break;
                 case 2:
-                    boolean band2=true;
-                    while (band2){
+                    boolean isTwoStillRuninn=true;
+                    while (isTwoStillRuninn){
                         System.out.println("Please choese one of the next courses to get their info about " +
                                 "\n the professor and the classmates:");
                         starSubMenuClasses(globerUniversity);
@@ -59,16 +44,13 @@ public class Main {
                                     System.out.println(subMenuOption);
                                     getProfessorsClass(globerUniversity,subMenuOption-1);
                                     searchClassMatesInfo(globerUniversity,subMenuOption-1);
-                                    band2=false;
+                                    isStillRunnin=false;
                                 }
-
                             }
                         }
                         else {
                             System.out.println("please type a number that corresponds");
                         }
-                        //all courses,and submenu to show off classes including the teacher, students an other data
-
                     }
 
                     break;
@@ -80,28 +62,23 @@ public class Main {
                     System.out.println("\nStudent's name:");
                     Scanner newName= new Scanner(System.in);
                     String newStudentsName=newName.nextLine();
-                    Scanner newStudentsLastName= new Scanner(System.in);
-                    System.out.println("Students last name");
-                    String newLastName=newStudentsLastName.nextLine();
-                    String newStudentFullname=newName+" "+newLastName;
                     Scanner newID= new Scanner(System.in);
                     System.out.println("Student's Id, following the list: ");
                     int newStudentsID=newID.nextInt();
                     Scanner newAge=new Scanner(System.in);
                     System.out.println("Students' Age:");
                     int newStudentsAge=newAge.nextInt();
-                    globerUniversity.addStudent(new Students(newStudentsID,newStudentFullname,newStudentsAge));
+                    globerUniversity.addStudent(new Students(newStudentsID,newStudentsName,newStudentsAge));
                     System.out.println( "choose the class to add the student: ");
                     starSubMenuClasses(globerUniversity);
                     int addStudenttoclass=scan.nextInt();
                     int studentsID=globerUniversity.getStudentsList().size();
                     globerUniversity.addStudentToCourse(addStudenttoclass,studentsID);
-                   // System.out.println(globerUniversity.getCoursesList().get(addStudenttoclass).getStudentsAtCourse().get(studentsID).getStudentsName()+" is added to: "+globerUniversity.getCoursesList().get(addStudenttoclass).getCourseName());
-                    //create a new student an added to students list
+                   getStudentListInfo(globerUniversity);
                     break;
                 case 4:
-                    boolean is4StillRunnin=true;
-                    while (is4StillRunnin)
+                    boolean isFourStillRunnin=true;
+                    while (isFourStillRunnin)
                     {
                         Scanner supportInput= new Scanner(System.in);
                         startSubMenuCase4();
@@ -115,7 +92,7 @@ public class Main {
                                 String newClasstoAdd=newClassName.nextLine();
                                 System.out.println("Type the room to asign to the new Course: ");
                                 Scanner newRoom= new Scanner(System.in);
-                                int newRoomtoAdd=newClassName.nextInt();
+                                int newRoomtoAdd=newRoom.nextInt();
                                 int subMenuCounter=0;
 
                                 System.out.println("these are our Professors: ");
@@ -129,8 +106,8 @@ public class Main {
                                 int typeID=newIDProfessor.nextInt();
                                 globerUniversity.addCourse(new Courses(newClasstoAdd,newRoomtoAdd,globerUniversity.getProfessorsList().get(typeID-1)));
                                 int lastClass=globerUniversity.getCoursesList().size()-1;
-                                System.out.println("You have create the new course: "+globerUniversity.getCoursesList().get(lastClass).getCourseName()
-                                        +" and you have assignated the Professor: "+globerUniversity.getProfessorsList().get(typeID-1).getProfessorsName()+".");
+                                System.out.println("You have create the new course: "+globerUniversity.getCoursesList().get(lastClass).getCourseName()+" at the room: "
+                                +globerUniversity.getCoursesList().get(lastClass).getRoomAsigned()+", and you have assignated the Professor: "+globerUniversity.getProfessorsList().get(typeID-1).getProfessorsName()+".");
 
                                 break;
                             case 2:
@@ -146,33 +123,54 @@ public class Main {
                                         int actualID=globerUniversity.getStudentsList().get(i).getStudentsID();
                                         if(actualID==askIDStudent)
                                         {
+
                                             int lastCourseID=globerUniversity.getCoursesList().size();
                                             globerUniversity.addStudentToCourse(lastCourseID,i);
                                             int lastClassIndex=globerUniversity.getCoursesList().size()-1;
                                             System.out.println("You have create the new course: "+globerUniversity.getCoursesList().get(lastClassIndex).getCourseName()
                                                     +" and you have add the student: "+globerUniversity.getStudentsList().get(i).getStudentsName());
-                                            is4StillRunnin=false;
+                                            isFourStillRunnin=false;
                                         }
+
                                     }
-
-
                                 }
 
-                                //add a new student to the class
                                 break;
                             case 3:
                                 System.out.println("Gettin back to the main menu...");
-                                is4StillRunnin=false;
+                                isFourStillRunnin=false;
                                 break;
                         }
                     }
-                    //create a new class and a techer and a relevant data
                     break;
                 case 5:
+                    boolean isFiveStillRunin=true;
+                    while (isFiveStillRunin)
+                    {
+                        System.out.println("Here are our students of our university");
+                        getStudentListInfo(globerUniversity);
+                        System.out.println("please type the ID of the student to know in wich courses is added: ");
+
+                        Scanner askingForID=new Scanner(System.in);
+                        int theIdWeNeedToLookInto=askingForID.nextInt();
+                        for(Courses i: globerUniversity.getCoursesList())
+                        {
+                            for(Students iSecond: i.getStudentsAtCourse()){
+                                if(theIdWeNeedToLookInto==iSecond.getStudentsID())
+                                {
+                                    System.out.println("The student: "+iSecond.getStudentsName()+" is added to the courses:");
+                                    System.out.println("\n"+i.getCourseName());
+                                    isFiveStillRunin=false;
+                                }
+
+                            }
+                        }
+                        System.out.println("\n++++++++++++++++++++++++\n");
+                    }
+
                     break;
-                //al the classes that a student is cursing
                 case 6:
-                    System.out.println("bye bye");
+                    System.out.println("bye bye. Thanks for using our System");
                     isStillRunnin = false;
                     //exit
                     break;
@@ -202,7 +200,7 @@ public class Main {
         System.out.println("Hello human, welcome to the Glober University, please type a number if you want to: " +
                 "\n 1) Get all the Professors information " +
                 "\n 2) Get all courses information, the professors from the course and the classmates!" +
-                "\n 3) inscript a new student to an existing class" +
+                "\n 3) Add a new student to an existing class" +
                 "\n 4) Create a new course, add a new professor and new classmates"+
                 "\n 5) Get all courses info in which a random student is signed up " +
                 "\n 6) Exit");
@@ -285,12 +283,17 @@ public class Main {
         newUniversity.addStudent(new Students(12, "juanito alimañana", 20));
         newUniversity.addStudent(new Students(23, "Peppa pig", 17));
         newUniversity.addStudent(new Students(35, "melo caramelo", 24));
-        newUniversity.addStudent(new Students(45,"rosa melano", 25));
+        newUniversity.addStudent(new Students(45,"Florinda Mesa", 25));
         newUniversity.addStudent(new Students(52, "armando casas", 29));
         newUniversity.addStudent(new Students(66, "Elton Jhon", 29));
         newUniversity.addStudent(new Students(78, "Lady Gaga", 16));
         newUniversity.addStudent(new Students(80, "Rana Rene", 35));
-        newUniversity.addStudent(new Students(98, "Mary lu", 326));
+        newUniversity.addStudent(new Students(52, "Mary lu", 326));
+        newUniversity.addStudent(new Students(89, "Mario El crack", 326));
+        newUniversity.addStudent(new Students(36, "Luisito el pillo", 30));
+        newUniversity.addStudent(new Students(25, "Yisus Crist SuperStar", 326));
+        newUniversity.addStudent(new Students(15, "Stromae le paris", 18));
+        newUniversity.addStudent(new Students(87, "Popeye the sailor", 56));
 
         //Courses
 
@@ -308,8 +311,14 @@ public class Main {
         newUniversity.addStudentToCourse(2,5);
         newUniversity.addStudentToCourse(2,6);
         newUniversity.addStudentToCourse(2,4);
-       // newUniversity.getCoursesList().get(0).addStudentsToCourse(newUniversity.getStudentsList().get(0));
-//        newUniversity.addCourse();
+        newUniversity.addStudentToCourse(3,7);
+        newUniversity.addStudentToCourse(3,12);
+        newUniversity.addStudentToCourse(4,10);
+        newUniversity.addStudentToCourse(5,9);
+        newUniversity.addStudentToCourse(6,8);
+        newUniversity.addStudentToCourse(6,11);
+        newUniversity.addStudentToCourse(3,11);
+
         return newUniversity;
     }
 

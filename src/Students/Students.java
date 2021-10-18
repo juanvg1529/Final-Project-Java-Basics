@@ -9,8 +9,8 @@ public class Students
     public Students( int studentsID,String studentsName, int studentsAge)
     {
         this.studentsName = studentsName;
-        StudentsID = studentsID;
-        StudentsAge = studentsAge;
+        this.StudentsID = studentsID;
+        this.StudentsAge = studentsAge;
     }
 
     public String getStudentsName()
@@ -18,28 +18,15 @@ public class Students
         return studentsName;
     }
 
-    public void setStudentsName(String studentsName)
-    {
-        this.studentsName = studentsName;
-    }
 
     public int getStudentsID()
     {
         return StudentsID;
     }
 
-    public void setStudentsID(int studentsID)
-    {
-        StudentsID = studentsID;
-    }
 
-    public int getStudentsAge()
-    {
-        return StudentsAge;
-    }
 
-    public void setStudentsAge(int studentsAge)
-    {
-        StudentsAge = studentsAge;
-    }
+
+
+
 }
