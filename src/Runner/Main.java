@@ -46,6 +46,8 @@ public class Main {
                 case 2:
                     boolean band2=true;
                     while (band2){
+                        System.out.println("Please chooese one of the next courses to get their info about " +
+                                "\n the professor and the classmates:");
                         starSubMenuClasses(globerUniversity);
                         int subMenuOption=scan.nextInt();
                         if (subMenuOption<globerUniversity.getCoursesList().size()+1)
@@ -73,17 +75,28 @@ public class Main {
                 case 3:
 
                     getStudentListInfo(globerUniversity);
+                    System.out.println("there are "+globerUniversity.getStudentsList().size()+" studiying with us!");
                     System.out.println("Please type the Students information:" );
-                    System.out.println("\n Student's name:");
+                    System.out.println("\nStudent's name:");
                     Scanner newName= new Scanner(System.in);
                     String newStudentsName=newName.nextLine();
+                    Scanner newStudentsLastName= new Scanner(System.in);
+                    System.out.println("Students last name");
+                    String newLastName=newStudentsLastName.nextLine();
+                    String newStudentFullname=newName+" "+newLastName;
                     Scanner newID= new Scanner(System.in);
-                    System.out.println("Student's Id: ");
+                    System.out.println("Student's Id, following the list: ");
                     int newStudentsID=newID.nextInt();
                     Scanner newAge=new Scanner(System.in);
                     System.out.println("Students' Age:");
                     int newStudentsAge=newAge.nextInt();
-                    globerUniversity.addStudent(new Students(newStudentsID,newStudentsName,newStudentsAge));
+                    globerUniversity.addStudent(new Students(newStudentsID,newStudentFullname,newStudentsAge));
+                    System.out.println( "choose the class to add the student: ");
+                    starSubMenuClasses(globerUniversity);
+                    int addStudenttoclass=scan.nextInt();
+                    int studentsID=globerUniversity.getStudentsList().size();
+                    globerUniversity.addStudentToCourse(addStudenttoclass,studentsID);
+                   // System.out.println(globerUniversity.getCoursesList().get(addStudenttoclass).getStudentsAtCourse().get(studentsID).getStudentsName()+" is added to: "+globerUniversity.getCoursesList().get(addStudenttoclass).getCourseName());
                     //create a new student an added to students list
                     break;
                 case 4:
@@ -130,8 +143,7 @@ public class Main {
     }
     public static int starSubMenuClasses(University university)
     {
-        System.out.println("Please chooese one of the next courses to get their info about " +
-                "\n the professor and the classmates:");
+
         int counter=0;
         for(Courses i: university.getCoursesList())
         {
@@ -197,15 +209,15 @@ public class Main {
         newUniversity.addProfessor(new PartTimeProfessor("lil nas X",4984,15));
 
         //students
-        newUniversity.addStudent(new Students(123, "juanito alimañana", 20));
-        newUniversity.addStudent(new Students(124, "Peppa pig", 17));
-        newUniversity.addStudent(new Students(125, "melo caramelo", 24));
-        newUniversity.addStudent(new Students(126, "rosa melano", 25));
-        newUniversity.addStudent(new Students(127, "armando casas", 29));
-        newUniversity.addStudent(new Students(128, "Elton Jhon", 29));
-        newUniversity.addStudent(new Students(129, "Lady Gaga", 16));
-        newUniversity.addStudent(new Students(130, "Rana Rene", 35));
-        newUniversity.addStudent(new Students(131, "Mary lu", 326));
+        newUniversity.addStudent(new Students(12, "juanito alimañana", 20));
+        newUniversity.addStudent(new Students(23, "Peppa pig", 17));
+        newUniversity.addStudent(new Students(35, "melo caramelo", 24));
+        newUniversity.addStudent(new Students(45,"rosa melano", 25));
+        newUniversity.addStudent(new Students(52, "armando casas", 29));
+        newUniversity.addStudent(new Students(66, "Elton Jhon", 29));
+        newUniversity.addStudent(new Students(78, "Lady Gaga", 16));
+        newUniversity.addStudent(new Students(80, "Rana Rene", 35));
+        newUniversity.addStudent(new Students(98, "Mary lu", 326));
 
         //Courses
 
