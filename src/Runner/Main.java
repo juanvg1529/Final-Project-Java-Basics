@@ -44,7 +44,8 @@ public class Main {
                                     System.out.println(subMenuOption);
                                     getProfessorsClass(globerUniversity,subMenuOption-1);
                                     searchClassMatesInfo(globerUniversity,subMenuOption-1);
-                                    isStillRunnin=false;
+                                    isTwoStillRuninn=false;
+
                                 }
                             }
                         }
@@ -137,7 +138,7 @@ public class Main {
 
                                 break;
                             case 3:
-                                System.out.println("Gettin back to the main menu...");
+                                System.out.println("Gettin back to the main menu....");
                                 isFourStillRunnin=false;
                                 break;
                         }
